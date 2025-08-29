@@ -33,10 +33,10 @@ us_starbucks_gdf = gpd.GeoDataFrame(
 )
 
 # --- Step 3: Get coordinates for zip code 92130 ---
-'''
-Nominatim converts Addresses to Coordinates or Coordinates to adressess
-In this case it converts the 92130, USA zipcode to coordinates.
-'''
+
+#Nominatim converts Addresses to Coordinates or Coordinates to adressess
+#In this case it converts the 92130, USA zipcode to coordinates.
+
 geolocator = Nominatim(user_agent="geo_app")
 location = geolocator.geocode("92130, USA")
 zip_point = Point(location.longitude, location.latitude)
@@ -45,19 +45,19 @@ zip_point = Point(location.longitude, location.latitude)
 
 
 us_starbucks_gdf = us_starbucks_gdf.to_crs(epsg=3857)
-'''
-geometry = [zip_point] gets the zipcode
-'''
+
+#geometry = [zip_point] gets the zipcode
+
 zip_point_gdf = gpd.GeoDataFrame(geometry=[zip_point], crs="EPSG:4326").to_crs(epsg=3857)
-'''
-.iloc:
-like counting seats in a classroom: “I want the 2nd seat in the 1st row.”
 
-.loc:
-like asking for a student by name: “Give me Alice’s desk.”
+#.iloc:
+#like counting seats in a classroom: “I want the 2nd seat in the 1st row.”
 
-iloc is also 
-'''
+#.loc:
+#like asking for a student by name: “Give me Alice’s desk.”
+
+#iloc is also 
+
 zip_geom = zip_point_gdf.geometry.iloc[0]
 
 # --- Step 5: Filter stores within 10 miles (16,093 meters) ---
