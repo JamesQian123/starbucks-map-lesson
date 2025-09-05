@@ -1,19 +1,19 @@
 {
     "version": "2.0.0",
-    "tasks": [
+    "configurations": [
         {
-            "label": "Run Streamlit App",
-            "type": "shell",
-            "command": "streamlit run /workspaces/starbucks-map-lesson/app.py",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
+            "name": "Launch Streamlit App",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "${workspaceFolder}/app.py"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
             }
         }
     ]
